@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect to Forge migrations</title>
+<meta name="description" content="Your Connect app starts paying Atlassian 25% on 1 October 2026. Migrated to Forge it pays 0%. Fixed-price migrations, second half paid only when Atlassian approves.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101317">
+<meta property="og:title" content="Connect to Forge migrations">
+<meta property="og:description" content="Your Connect app starts paying Atlassian 25% on 1 October. Migrated to Forge it pays 0%. Fixed price, second half only when Atlassian approves.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1b1f24;
+    --muted: #5b6470;
+    --line: #e3e6ea;
+    --card: #f6f7f9;
+    --accent: #0e6b56;
+    --accent-fg: #ffffff;
+    --link: #0e6b56;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #101317;
+      --fg: #e6e9ee;
+      --muted: #9aa4b1;
+      --line: #2a3038;
+      --card: #181c22;
+      --accent: #3ecfa3;
+      --accent-fg: #0b0e12;
+      --link: #5fd3b0;
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  @media (min-width: 720px) { body { font-size: 17px; } }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+  @media (min-width: 720px) { .wrap { padding-left: 24px; padding-right: 24px; } }
+
+  a { color: var(--link); }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  header.top { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  header.top .wrap {
+    display: flex; flex-wrap: wrap; gap: 6px 16px;
+    align-items: baseline; justify-content: space-between;
+  }
+  .brand { font-weight: 600; text-decoration: none; color: var(--fg); }
+  nav { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 0.9375rem; }
+  nav a:hover { color: var(--fg); text-decoration: underline; }
+
+  section { padding: 40px 0; border-top: 1px solid var(--line); }
+  section.hero { border-top: 0; padding-top: 48px; }
+  @media (min-width: 720px) {
+    section { padding: 56px 0; }
+    section.hero { padding-top: 72px; }
+  }
+
+  h1 { font-size: 1.75rem; line-height: 1.2; margin: 0 0 16px; font-weight: 700; letter-spacing: -0.01em; }
+  @media (min-width: 720px) { h1 { font-size: 2.25rem; } }
+  h2 { font-size: 1.375rem; line-height: 1.25; margin: 0 0 16px; font-weight: 700; }
+  h3 { font-size: 1.0625rem; margin: 0 0 4px; font-weight: 600; }
+  p { margin: 0 0 12px; }
+  p:last-child { margin-bottom: 0; }
+  .lead { font-size: 1.125rem; }
+  .note { color: var(--muted); font-size: 0.9375rem; }
+
+  .btn {
+    display: inline-block; background: var(--accent); color: var(--accent-fg);
+    text-decoration: none; padding: 12px 18px; border-radius: 6px;
+    font-weight: 600; margin: 8px 0 4px;
+  }
+  .btn:hover { filter: brightness(0.94); }
+
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 8px; padding: 16px;
+  }
+  .guarantee { margin-top: 24px; }
+
+  ul.cards { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  ul.cards li { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+  ul.cards li p { margin: 0; }
+  sup { line-height: 0; font-size: 0.75em; }
+  sup a { text-decoration: none; padding: 0 2px; }
+
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+  th, td {
+    text-align: left; padding: 8px 8px 8px 0;
+    border-bottom: 1px solid var(--line); vertical-align: top;
+    overflow-wrap: anywhere;
+  }
+  th { font-weight: 600; color: var(--muted); font-size: 0.875rem; }
+  .num { text-align: right; white-space: nowrap; padding-right: 0; }
+  tr.total td { font-weight: 700; }
+  td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; }
+
+  ul.tiers { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; }
+  @media (min-width: 760px) { ul.tiers { grid-template-columns: repeat(3, 1fr); } }
+  .tier { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+  .tier .price { font-size: 1.375rem; font-weight: 700; margin: 8px 0 2px; }
+  .tier .time { color: var(--muted); font-size: 0.9375rem; margin: 0 0 8px; }
+  .tier ul { padding-left: 18px; margin: 0; font-size: 0.9375rem; }
+  .tier ul li { margin-bottom: 4px; }
+
+  ul.list { padding-left: 20px; margin: 0; }
+  ul.list li { margin-bottom: 10px; }
+  ol.steps { padding-left: 22px; margin: 0; }
+  ol.steps li { margin-bottom: 12px; }
+  ol.steps li strong { display: block; }
+
+  ul.stats { display: flex; flex-wrap: wrap; gap: 12px 28px; margin: 16px 0; padding: 0; list-style: none; }
+  ul.stats li { font-size: 0.9375rem; color: var(--muted); }
+  ul.stats strong { display: block; font-size: 1.25rem; color: var(--fg); }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0 56px; font-size: 0.875rem; color: var(--muted); }
+  footer h2 { font-size: 1rem; margin-bottom: 12px; color: var(--fg); }
+  footer ol { padding-left: 20px; margin: 0 0 20px; }
+  footer li { margin-bottom: 10px; }
+  footer a { overflow-wrap: anywhere; }
+
+  /* Narrow phones: stack the ROI table so numbers never break mid-figure. */
+  @media (max-width: 359px) {
+    table.stack, table.stack tbody { display: block; width: 100%; }
+    table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    table.stack tr { display: grid; grid-template-columns: 1fr auto; column-gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+    table.stack td { border: 0; padding: 0; }
+    table.stack td:first-child { grid-column: 1 / -1; }
+    table.stack td:nth-child(2) { color: var(--muted); }
+    table.stack td code { white-space: nowrap; }
+  }
+
+  .slots { display: inline-block; margin-top: 12px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; font-size: 0.875rem; color: var(--muted); }
+  .quote { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; margin: 12px 0; color: var(--muted); }
+  table td.tier-cell { white-space: nowrap; }
+
+  table.apps { min-width: 560px; }
+  table.apps th, table.apps td { overflow-wrap: normal; padding-right: 14px; white-space: nowrap; }
+  table.apps th.num, table.apps td.num { padding-left: 14px; padding-right: 0; }
+  table.apps td:first-child { white-space: normal; min-width: 12em; }
+  table.apps th:nth-child(4), table.apps td:nth-child(4) { padding-left: 22px; }
+  .sub { color: var(--muted); font-size: 0.875rem; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Connect to Forge migrations</a>
+    <nav aria-label="Sections">
+      <a href="#hybrid">Forge manifest?</a>
+      <a href="#why-now">Why now</a>
+      <a href="#roi">Real numbers</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#proof">Proof</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1. Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <h1 id="hero-title">Your Connect app starts paying Atlassian 25% on 1 October. Migrated to Forge, it pays 0%.</h1>
+      <p class="lead">I migrate Connect apps to Forge for a fixed price. Half up front, half when Atlassian approves. If Atlassian never approves it, you don't pay the second half.</p>
+      <p><a class="btn" href="mailto:hermohjlp@gmail.com?subject=Connect%20to%20Forge%20migration%3A%20my%20listing&body=Marketplace%20listing%3A%20">Send your listing link</a></p>
+      <p class="note">Within one business day you get the numbers for your app: what you pay Atlassian now, what the migration costs, and the payback in months. No call needed.</p>
+      <p><span class="slots" id="slots">Two migrations a month. October: two slots open.</span></p>
+      <!-- TODO: first testimonial goes here once a founding client signs off. -->
+    </div>
+  </section>
+
+  <!-- 2. Hybrid apps -->
+  <section id="hybrid" aria-labelledby="hybrid-title">
+    <div class="wrap">
+      <h2 id="hybrid-title">Already on a Forge manifest? You may still be paying the Connect rate.</h2>
+      <p>Atlassian's rule is one line long:</p>
+      <p class="quote">"An app that uses the Forge manifest but contains Connect modules will receive the Connect revenue share rate."<sup><a href="#src2" id="ref2b">2</a></sup></p>
+      <p>One Connect module or one Connect scope left in the manifest, and the whole app pays 25% from 1 October. Not 0%.</p>
+      <p>I checked every paid Jira and Jira Service Management cloud app with 50 to 2,000 installs. Most of the ones still paying the Connect rate are not on Connect any more. They are on a Forge manifest with a few Connect modules or scopes left over. Their owners believe the migration is done.</p>
+      <p>Finishing that migration is usually the Simple tier: map the last modules, drop the Connect scopes, resubmit. If you are not sure which side of the line your app is on, send me the listing link and I will tell you.</p>
+    </div>
+  </section>
+
+  <!-- 3. Why now -->
+  <section id="why-now" aria-labelledby="why-title">
+    <div class="wrap">
+      <h2 id="why-title">Why now</h2>
+      <p>Three facts from Atlassian's own pages. Sources are at the bottom, checked 23 September 2026.</p>
+      <ul class="cards">
+        <li>
+          <h3>Connect apps pay Atlassian 20% today and 25% from 1 October 2026.<sup><a href="#src1" id="ref1">1</a></sup></h3>
+          <p>The Connect share went from 15% to 20% on 1 April 2026 and rises to 25% on 1 October 2026. The Forge standard rate is 16%, rising to 17% the same day.</p>
+        </li>
+        <li>
+          <h3>Migrated Forge apps pay 0% on the first $1M of lifetime Forge revenue.<sup><a href="#src2" id="ref2">2</a></sup></h3>
+          <p>Since 1 January 2026, partners keep 100% of Forge revenue until they reach $1M lifetime across all their Forge apps. A migrated app qualifies once it is Forge-only: no Connect modules, OAuth, Forge UI. Revenue earned on Connect does not count against the $1M.</p>
+        </li>
+        <li>
+          <h3>Connect end of support begins on 31 January 2027.<sup><a href="#src3" id="ref3">3</a></sup></h3>
+          <p>Atlassian moved the date from December 2026 to 31 January 2027. Since March 2026 the Marketplace no longer accepts updates to apps with a Connect descriptor. After end of support, Atlassian only addresses critical security vulnerabilities in Connect.</p>
+        </li>
+      </ul>
+      <p class="note" style="margin-top: 16px;">Both dates are set. The only open number is how many months of share you pay before switching.</p>
+    </div>
+  </section>
+
+  <!-- 4. Real numbers -->
+  <section id="roi" aria-labelledby="roi-title">
+    <div class="wrap">
+      <h2 id="roi-title">Three real apps, names withheld</h2>
+      <p>Public installs and public list prices from the Marketplace, run through the same arithmetic I will run for your app. All three are on a Forge manifest today and still paying the Connect rate.</p>
+      <div class="table-wrap">
+        <table class="apps">
+          <thead>
+            <tr>
+              <th scope="col">App</th>
+              <th scope="col" class="num">Installs</th>
+              <th scope="col" class="num">Share paid per month</th>
+              <th scope="col">Job</th>
+              <th scope="col" class="num">Payback</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Time-tracking app<br><span class="sub">$1.50 per user per month</span></td>
+              <td class="num">386</td>
+              <td class="num">$1,270</td>
+              <td>Standard<br><span class="sub">6 modules left</span></td>
+              <td class="num">about 5 months</td>
+            </tr>
+            <tr>
+              <td>Delivery-analytics app<br><span class="sub">$1.50 per user per month</span></td>
+              <td class="num">1,004</td>
+              <td class="num">$3,290</td>
+              <td>Simple<br><span class="sub">3 modules left</span></td>
+              <td class="num">about 1 month</td>
+            </tr>
+            <tr>
+              <td>Data-protection app<br><span class="sub">$4.00 per user per month</span></td>
+              <td class="num">1,289</td>
+              <td class="num">$11,280</td>
+              <td>Standard<br><span class="sub">2 modules left</span></td>
+              <td class="num">under 1 month</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Share paid is per month at the 25% rate that applies from 1 October, assuming 35% of installs are paying sites of 25 users at the first price band. Payback uses the mid-point of the tier price. Your real figures may be higher or lower; that is what the one-business-day reply is for.</p>
+      <p>The smallest of the three keeps about $15,000 a year after the migration pays for itself. The largest keeps about $135,000.</p>
+    </div>
+  </section>
+
+  <!-- 5. What you get -->
+  <section id="what-you-get" aria-labelledby="get-title">
+    <div class="wrap">
+      <h2 id="get-title">What you get</h2>
+      <ul class="list">
+        <li><strong>Module mapping.</strong> Every Connect module mapped to its Forge module before work starts, with any gap named up front.</li>
+        <li><strong>UI port.</strong> UI Kit where it fits, Custom UI where it does not.</li>
+        <li><strong>Storage migration.</strong> Entity properties stay where they are. Server-side data moves to Forge storage, or stays on your backend if you prefer.</li>
+        <li><strong>Marketplace review.</strong> I submit the app and fix what Atlassian flags until it is approved.</li>
+        <li><strong>30 days of post-approval fixes.</strong> Anything that breaks in the first month after approval, I fix.</li>
+        <li><strong>Docs and a recorded walkthrough.</strong> Written notes on the new code base, plus a screen recording of me walking through it.</li>
+        <li><strong>Code and IP transfer to you on final payment.</strong> Your repo, your app id, your listing. I keep nothing but generic tooling.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. Pricing -->
+  <section id="pricing" aria-labelledby="pricing-title">
+    <div class="wrap">
+      <h2 id="pricing-title">Pricing</h2>
+      <p>Fixed price, set after the look at your app. It does not change unless the scope does.</p>
+      <ul class="tiers">
+        <li class="tier">
+          <h3>Simple</h3>
+          <p class="price">$3,000 to $4,000</p>
+          <p class="time">Up to 2 weeks</p>
+          <ul>
+            <li>1 to 2 modules, or a few leftover Connect modules and scopes</li>
+            <li>No external backend</li>
+          </ul>
+        </li>
+        <li class="tier">
+          <h3>Standard</h3>
+          <p class="price">$6,000 to $9,000</p>
+          <p class="time">Up to 4 weeks</p>
+          <ul>
+            <li>Several modules</li>
+            <li>Storage</li>
+            <li>Webhooks or triggers</li>
+          </ul>
+        </li>
+        <li class="tier">
+          <h3>Complex</h3>
+          <p class="price">Quoted after the look</p>
+          <p class="time">4 to 8 weeks</p>
+          <ul>
+            <li>Remote backend</li>
+            <li>Heavy Custom UI</li>
+            <li>Data migration</li>
+          </ul>
+        </li>
+      </ul>
+      <div class="card" style="margin-top: 16px;">
+        <h3>Founding-client price, first two jobs</h3>
+        <p>I have one public port and zero paid migrations so far. That is why the first two clients pay half: Simple $1,500 to $2,000, Standard $3,000 to $4,000. In return I ask for a written testimonial once Atlassian approves.</p>
+      </div>
+      <p class="note" style="margin-top: 16px;">Terms: 50% up front, 50% when Atlassian approves. The agreement is one page: <a href="agreement.html">read it before you email</a>.</p>
+    </div>
+  </section>
+
+  <!-- 7. Proof -->
+  <section id="proof" aria-labelledby="proof-title">
+    <div class="wrap">
+      <h2 id="proof-title">Proof</h2>
+      <p>What exists today, nothing more:</p>
+      <ul class="list">
+        <li><strong>A public Connect to Forge port.</strong> The open-source Jira checklist Connect app rebuilt on Forge: same feature, same data, no server. The write-up covers what changed module by module, what broke, and what it took. <a href="https://github.com/hermogenes-lopez/checklist-forge">Code and write-up on GitHub</a>.</li>
+        <li><strong>A Forge app built from scratch.</strong> Merge for Jira and Jira Service Management, which merges duplicate tickets. Built on Forge, working on a live site, Marketplace listing in preparation.</li>
+        <li><strong>Zero paid migrations yet.</strong> Hence the founding-client price above.</li>
+      </ul>
+      <!-- TODO: add the Marketplace listing links here once approved:
+           <p><a href="https://marketplace.atlassian.com/apps/...">See the checklist app on the Atlassian Marketplace</a></p> -->
+    </div>
+  </section>
+
+  <!-- 8. How it works -->
+  <section id="how-it-works" aria-labelledby="how-title">
+    <div class="wrap">
+      <h2 id="how-title">How it works</h2>
+      <ol class="steps">
+        <li><strong>Send your Marketplace listing link.</strong> Within one business day you get your numbers: share paid now, migration price, payback. If they are worth acting on, we do a 20-minute call.</li>
+        <li><strong>A fixed quote and a scope sheet.</strong> Tier, price, modules in scope, what changes for your users, and the timeline.</li>
+        <li><strong>Build, with your review on a test site.</strong> You get access to the development site and see the app as it comes together.</li>
+        <li><strong>Atlassian approval, then final payment.</strong> The 30-day fix window starts on approval. If approval never comes, the second half is never due.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 9. About -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <h2 id="about-title">About</h2>
+      <p>Hermogenes Lopez builds Forge apps for Jira and Jira Service Management, working US Eastern hours. The checklist port above is public and the code is on <a href="https://github.com/hermogenes-lopez">GitHub</a>. You keep your repo and your app id throughout; I work on a branch you can see. English and Spanish.</p>
+    </div>
+  </section>
+
+  <!-- 10. Contact -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <h2 id="contact-title">Contact</h2>
+      <p>Email <a href="mailto:hermohjlp@gmail.com?subject=Connect%20to%20Forge%20migration%3A%20my%20listing&body=Marketplace%20listing%3A%20">hermohjlp@gmail.com</a> with a link to your Marketplace listing. One business day later you have your numbers. No forms, no newsletter.</p>
+      <p><a class="btn" href="mailto:hermohjlp@gmail.com?subject=Connect%20to%20Forge%20migration%3A%20my%20listing&body=Marketplace%20listing%3A%20">Send your listing link</a></p>
+      <!-- TODO: testimonials section goes here once the first founding client is approved. -->
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2 id="sources">Sources</h2>
+    <ol>
+      <li id="src1">Atlassian Developer, <a href="https://developer.atlassian.com/platform/marketplace/pricing-payment-and-billing/">Pricing, payment, and billing</a>: partners receive 80% of gross for Connect apps from 1 April 2026 and 75% from 1 October 2026; Forge apps 84% then 83%. Atlassian blog, <a href="https://www.atlassian.com/blog/development/extended-timelines-for-marketplace-revenue-share-changes">Extended timelines for Marketplace revenue share changes</a>, 3 November 2025. <a href="#ref1" aria-label="Back to reference 1">↩</a></li>
+      <li id="src2">Atlassian Developer, <a href="https://developer.atlassian.com/platform/marketplace/pricing-payment-and-billing/">Pricing, payment, and billing</a>: "As of 1 January 2026, partners will receive 100% of gross revenue earned on Forge, up to $1 million in lifetime Forge revenue." Eligible apps contain no Connect modules, use OAuth authentication and use Forge UI. Atlassian blog, <a href="https://www.atlassian.com/blog/development/updates-to-marketplace-revenue-share-2026">Updates to Marketplace revenue share: 2026</a>, 5 May 2025: "An app that uses the Forge manifest but contains Connect modules will receive the Connect revenue share rate"; migrated Connect apps qualify; only revenue earned after the first Forge-only version is listed counts. <a href="#ref2" aria-label="Back to reference 2">↩</a></li>
+      <li id="src3">Atlassian Developer, <a href="https://developer.atlassian.com/platform/adopting-forge-from-connect/connect-end-of-support-private-apps/">Connect end of support: what it means for private/custom apps</a>: "Connect end of support begins on 31 January 2027. This date was extended from December 2026." Atlassian blog, <a href="https://www.atlassian.com/blog/development/getting-ready-for-connect-end-of-support">Getting ready for Connect end of support</a>, 3 August 2026: timeline, including the March 2026 cutoff for updates to apps with a Connect descriptor. Original phased timeline: <a href="https://www.atlassian.com/blog/development/announcing-connect-end-of-support-timeline-and-next-steps">Announcing Connect end of support</a>, 17 March 2025. <a href="#ref3" aria-label="Back to reference 3">↩</a></li>
+    </ol>
+    <p>Figures for the three apps come from public Marketplace listings on 23 September 2026 and the assumptions stated above. Atlassian, Jira, Forge and Connect are trademarks of Atlassian. This site is not affiliated with Atlassian.</p>
+  </div>
+</footer>
+
+</body>
+</html>

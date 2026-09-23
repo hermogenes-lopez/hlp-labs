@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services agreement, template</title>
+<meta name="description" content="The one-page fixed-price agreement used for Connect to Forge migrations, with blanks shown.">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1b1f24;
+    --muted: #5b6470;
+    --line: #e3e6ea;
+    --card: #f6f7f9;
+    --accent: #0e6b56;
+    --accent-fg: #ffffff;
+    --link: #0e6b56;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #101317;
+      --fg: #e6e9ee;
+      --muted: #9aa4b1;
+      --line: #2a3038;
+      --card: #181c22;
+      --accent: #3ecfa3;
+      --accent-fg: #0b0e12;
+      --link: #5fd3b0;
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  @media (min-width: 720px) { body { font-size: 17px; } }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+  @media (min-width: 720px) { .wrap { padding-left: 24px; padding-right: 24px; } }
+
+  a { color: var(--link); }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  header.top { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  header.top .wrap {
+    display: flex; flex-wrap: wrap; gap: 6px 16px;
+    align-items: baseline; justify-content: space-between;
+  }
+  .brand { font-weight: 600; text-decoration: none; color: var(--fg); }
+  nav { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 0.9375rem; }
+  nav a:hover { color: var(--fg); text-decoration: underline; }
+
+  section { padding: 40px 0; border-top: 1px solid var(--line); }
+  section.hero { border-top: 0; padding-top: 48px; }
+  @media (min-width: 720px) {
+    section { padding: 56px 0; }
+    section.hero { padding-top: 72px; }
+  }
+
+  h1 { font-size: 1.75rem; line-height: 1.2; margin: 0 0 16px; font-weight: 700; letter-spacing: -0.01em; }
+  @media (min-width: 720px) { h1 { font-size: 2.25rem; } }
+  h2 { font-size: 1.375rem; line-height: 1.25; margin: 0 0 16px; font-weight: 700; }
+  h3 { font-size: 1.0625rem; margin: 0 0 4px; font-weight: 600; }
+  p { margin: 0 0 12px; }
+  p:last-child { margin-bottom: 0; }
+  .lead { font-size: 1.125rem; }
+  .note { color: var(--muted); font-size: 0.9375rem; }
+
+  .btn {
+    display: inline-block; background: var(--accent); color: var(--accent-fg);
+    text-decoration: none; padding: 12px 18px; border-radius: 6px;
+    font-weight: 600; margin: 8px 0 4px;
+  }
+  .btn:hover { filter: brightness(0.94); }
+
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 8px; padding: 16px;
+  }
+  .guarantee { margin-top: 24px; }
+
+  ul.cards { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  ul.cards li { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+  ul.cards li p { margin: 0; }
+  sup { line-height: 0; font-size: 0.75em; }
+  sup a { text-decoration: none; padding: 0 2px; }
+
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+  th, td {
+    text-align: left; padding: 8px 8px 8px 0;
+    border-bottom: 1px solid var(--line); vertical-align: top;
+    overflow-wrap: anywhere;
+  }
+  th { font-weight: 600; color: var(--muted); font-size: 0.875rem; }
+  .num { text-align: right; white-space: nowrap; padding-right: 0; }
+  tr.total td { font-weight: 700; }
+  td code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; }
+
+  ul.tiers { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; }
+  @media (min-width: 760px) { ul.tiers { grid-template-columns: repeat(3, 1fr); } }
+  .tier { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+  .tier .price { font-size: 1.375rem; font-weight: 700; margin: 8px 0 2px; }
+  .tier .time { color: var(--muted); font-size: 0.9375rem; margin: 0 0 8px; }
+  .tier ul { padding-left: 18px; margin: 0; font-size: 0.9375rem; }
+  .tier ul li { margin-bottom: 4px; }
+
+  ul.list { padding-left: 20px; margin: 0; }
+  ul.list li { margin-bottom: 10px; }
+  ol.steps { padding-left: 22px; margin: 0; }
+  ol.steps li { margin-bottom: 12px; }
+  ol.steps li strong { display: block; }
+
+  ul.stats { display: flex; flex-wrap: wrap; gap: 12px 28px; margin: 16px 0; padding: 0; list-style: none; }
+  ul.stats li { font-size: 0.9375rem; color: var(--muted); }
+  ul.stats strong { display: block; font-size: 1.25rem; color: var(--fg); }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0 56px; font-size: 0.875rem; color: var(--muted); }
+  footer h2 { font-size: 1rem; margin-bottom: 12px; color: var(--fg); }
+  footer ol { padding-left: 20px; margin: 0 0 20px; }
+  footer li { margin-bottom: 10px; }
+  footer a { overflow-wrap: anywhere; }
+
+  /* Narrow phones: stack the ROI table so numbers never break mid-figure. */
+  @media (max-width: 359px) {
+    table.stack, table.stack tbody { display: block; width: 100%; }
+    table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    table.stack tr { display: grid; grid-template-columns: 1fr auto; column-gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+    table.stack td { border: 0; padding: 0; }
+    table.stack td:first-child { grid-column: 1 / -1; }
+    table.stack td:nth-child(2) { color: var(--muted); }
+    table.stack td code { white-space: nowrap; }
+  }
+
+  .slots { display: inline-block; margin-top: 12px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; font-size: 0.875rem; color: var(--muted); }
+  .quote { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; margin: 12px 0; color: var(--muted); }
+  table td.tier-cell { white-space: nowrap; }
+
+  table.apps { min-width: 560px; }
+  table.apps th, table.apps td { overflow-wrap: normal; padding-right: 14px; white-space: nowrap; }
+  table.apps th.num, table.apps td.num { padding-left: 14px; padding-right: 0; }
+  table.apps td:first-child { white-space: normal; min-width: 12em; }
+  .sub { color: var(--muted); font-size: 0.875rem; }
+
+  .doc h1 { font-size: 1.5rem; }
+  .doc h2 { font-size: 1.125rem; margin-top: 28px; }
+  .doc blockquote { margin: 0 0 16px; padding: 10px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; }
+  .doc blockquote p { margin: 0; }
+  .blank { display: inline-block; border-bottom: 1px dashed var(--muted); color: var(--muted); font-style: italic; padding: 0 2px; }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="./">Connect to Forge migrations</a><nav aria-label="Sections"><a href="./#pricing">Back to pricing</a></nav></div></header>
+<main><section class="hero"><div class="wrap doc">
+<p class="note">This is the agreement as it will be sent, with the blanks shown as <span class="blank">blank</span>. Scope goes on a separate one-page scope sheet filled during the call.</p>
+<blockquote>
+<p><strong>Template, not legal advice.</strong> Drafted by a non-lawyer. Have a lawyer review it before first use.</p>
+</blockquote>
+<h1>Fixed-Price Services Agreement</h1>
+<p><strong>Developer:</strong> <span class="blank">developer name</span>, an individual, <span class="blank">developer address</span> ("I")
+<strong>Client:</strong> <span class="blank">client legal name</span>, <span class="blank">client address</span> ("you")
+<strong>App:</strong> <span class="blank">app name</span> (Marketplace key <span class="blank">app key</span>) · <strong>Date:</strong> <span class="blank">date</span></p>
+<h2>1. Work</h2>
+<p>I will migrate the App from Atlassian Connect to Atlassian Forge as described in the attached Scope Sheet, part of this agreement. Anything not on it is out of scope.</p>
+<h2>2. Price and payment</h2>
+<p>Fixed price: <span class="blank">price</span> <span class="blank">currency</span>. 50% on signing (work starts when it arrives); 50% on <strong>Approval</strong>, meaning Atlassian approves the migrated App for the Atlassian Marketplace. Invoices due within <span class="blank">payment days</span> days via bank transfer, Wise, Stripe or PayPal; transfer fees are yours. Price excludes taxes; W-8BEN on request.</p>
+<h2>3. Approval guarantee</h2>
+<p>If, after <span class="blank">max resubmissions</span> resubmissions or <span class="blank">guarantee weeks</span> weeks from my first submission (whichever is later), Atlassian still has not approved the App despite my fixing every code issue it raised, you do not owe the second 50% and keep the code delivered.</p>
+<p>The guarantee excludes rejections or delays caused outside the code I deliver: your vendor account or listing (content, pricing, policies, support), Atlassian policy or commercial decisions unrelated to the code, changes you request after submission, or your delays under section 6. Then the second 50% is due on Approval, or <span class="blank">stall weeks</span> weeks after I give written notice that the code is ready and the blocker is yours, whichever is earlier.</p>
+<h2>4. Timeline</h2>
+<p>Estimated delivery: <span class="blank">estimated weeks</span> weeks from the deposit and full access under section 6. An estimate, not a warranty; I will flag slips promptly.</p>
+<h2>5. Changes</h2>
+<p>Anything outside the Scope Sheet is a change request, quoted in writing (price and time) and started only after your written approval.</p>
+<h2>6. You provide</h2>
+<ul>
+<li>Read access to the App's source code and repository.</li>
+<li>A Marketplace vendor account in good standing, with me added as a developer.</li>
+<li>A cloud test site with the current Connect App installed.</li>
+<li>Answers and review decisions within <span class="blank">review days</span> business days. Your delays extend the timeline and guarantee clock equally.</li>
+</ul>
+<h2>7. Fix window</h2>
+<p>For 30 days after Approval I fix, free, defects where Scope Sheet functionality does not work in Forge as it did in Connect. Excluded: new features, Atlassian platform changes after Approval, and changes others make to the code.</p>
+<h2>8. Intellectual property</h2>
+<p>On final payment, all rights in the code I wrote for the App under this agreement transfer to you; until then you may use it for testing only. I keep my pre-existing tools, libraries and know-how, and any generic migration tooling I build or improve during the work; where embedded in the delivered code, you get a perpetual, royalty-free licence to use it there.</p>
+<h2>9. Confidentiality</h2>
+<p>Each of us keeps the other's non-public information confidential, uses it only for this project, and deletes it on request, for <span class="blank">confidentiality years</span> years after this agreement ends.</p>
+<h2>10. Warranty and liability</h2>
+<p>Beyond sections 3 and 7, no warranty of any kind. Neither of us is liable for indirect or consequential loss or lost profits. My total liability is capped at the fees you have actually paid me. Nothing limits liability that cannot be limited by law.</p>
+<h2>11. Independent contractor</h2>
+<p>I am an independent contractor, not your employee, partner or agent, and handle my own hours, equipment, taxes and insurance.</p>
+<h2>12. Termination</h2>
+<p>Either of us may end this agreement on <span class="blank">notice days</span> days' written notice, or immediately for a material breach not cured within 10 days of notice. Before Approval:
+- You end for convenience, or I end for your breach: I keep the deposit; the balance is not owed.
+- I end for convenience, or you end for my breach: I refund the part of the deposit not earned by work delivered, valued at <span class="blank">hourly rate</span>/hour.</p>
+<p>Either way I hand over the code as it stands; section 8 applies once amounts owed are paid. Sections 8 to 10, 13 and 14 survive.</p>
+<h2>13. Reference and case study</h2>
+<p>I may name you as a client and publish a case study only with your prior written consent (email suffices), which you may withdraw for future use.</p>
+<h2>14. General</h2>
+<p>Governed by the laws of <span class="blank">governing law</span>; courts of <span class="blank">venue</span>. Notices by email to the addresses below. Whole agreement; changes in writing. Unenforceable clauses are severed.</p>
+<p><strong>Developer:</strong> <span class="blank">developer name</span> — <span class="blank">developer email</span> — signature <strong><em>_</em></strong>_ date <strong><em>_</em>_
+<strong>Client:</strong> <span class="blank">client signatory</span>, <span class="blank">client title</span> — <span class="blank">client email</span> — signature </strong><strong><em>_</em>_ date </strong>____</p>
+</div></section></main>
+<footer><div class="wrap"><p>Template, not legal advice. Reviewed by a lawyer before first use. Atlassian, Jira, Forge and Connect are trademarks of Atlassian.</p></div></footer>
+</body>
+</html>
