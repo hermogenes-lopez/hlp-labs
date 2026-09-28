@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merge Duplicate Tickets for JSM · Documentation · HLP Labs</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body><div class="wrap">
+<nav><a href="../">Home</a><a href="../privacy.html">Privacy</a><a href="../sla.html">Support &amp; SLA</a></nav>
+<h1>Merge Duplicate Tickets for JSM</h1>
+<p class="meta">Documentation · version 2.2 · September 2026</p>
+
+<p>Merge folds a duplicate Jira Service Management request (or any Jira work item) into the ticket you want to keep. Comments, attachments, watchers and customers move over; the duplicate is linked, closed and audited. Nothing is changed until you confirm a preview.</p>
+
+<h2>Install</h2>
+<ol>
+  <li>A Jira admin installs the app from the Atlassian Marketplace (Apps → Explore more apps → search "Merge Duplicate Tickets").</li>
+  <li>There is no configuration. Free for sites with up to 10 users; paid per user above that.</li>
+  <li>The first time each agent uses Merge, Jira asks them to allow the app to act on their behalf. This is standard for Forge apps that run as the user.</li>
+</ol>
+
+<h2>Merge a duplicate</h2>
+<ol>
+  <li>Open the <strong>duplicate</strong> ticket (the one that should be closed).</li>
+  <li>Click the <strong>•••</strong> menu at the top right of the ticket and choose <strong>Merge into another ticket</strong>.</li>
+  <li>In the search box, type the key (for example <code>SUP-12</code>) or a few words from the summary of the ticket you want to keep, and pick it. With an empty box, the list shows open tickets in the same project, most recently updated first.</li>
+  <li>Click <strong>Preview merge</strong>. The preview shows how many comments, attachments, new watchers and customers will move, and confirms the duplicate will be linked and closed.</li>
+  <li>Click <strong>Confirm merge</strong>. Progress is shown while it runs. Keep the dialog open until the report appears.</li>
+  <li>Click <strong>Done</strong>. The ticket view reloads.</li>
+</ol>
+
+<h2>What moves, exactly</h2>
+<ul>
+  <li><strong>Attachments</strong> are copied first (files up to 20 MB each; larger ones stay on the duplicate and are listed in a note on the kept ticket).</li>
+  <li><strong>Comments</strong> are copied in order. Internal notes stay internal, customer replies stay public. Each copy starts with "Merged from KEY — originally posted by NAME on DATE". Pasted images inside comments are shown again on the kept ticket.</li>
+  <li><strong>Watchers</strong> of the duplicate are added to the kept ticket if they aren't watching it already.</li>
+  <li><strong>Customers</strong> (JSM only): the duplicate's reporter and request participants are added as participants on the kept ticket, so they keep receiving updates. On a non-JSM work item this step is skipped.</li>
+  <li><strong>Link</strong>: the duplicate is linked to the kept ticket with the "Duplicate" link type ("Relates" if your site has no Duplicate type).</li>
+  <li><strong>Audit notes</strong>: an internal note is written on both tickets saying who merged what and when.</li>
+  <li><strong>Close</strong>: the duplicate is moved to a Done-category status. If the workflow needs more than one step (for example To Do → In Progress → Done), Merge walks it, and sets the resolution to "Duplicate" when your site has that resolution.</li>
+  <li><strong>History</strong>: the dialog on either ticket lists past merges (ticket keys, counts and time only).</li>
+</ul>
+
+<h2>Permissions and safety</h2>
+<ul>
+  <li>Merge runs as the agent who clicks it, with that agent's Jira permissions. Before changing anything it checks that the agent can comment, attach and link on the kept ticket, and comment and transition the duplicate. If not, it stops with a clear message and nothing is changed.</li>
+  <li>A ticket that is already closed can't be merged away; open the duplicate instead.</li>
+  <li>The app runs on Atlassian only: no data leaves your Atlassian cloud, and the app stores no personal data.</li>
+</ul>
+
+<h2>Frequently asked</h2>
+<p><strong>Can I undo a merge?</strong> Not automatically. The duplicate is closed, not deleted, and keeps all its original content, so nothing is lost: reopen it if needed and remove the copied items from the kept ticket.</p>
+<p><strong>Why do the copied comments show my name as the author?</strong> Jira only allows creating comments as the current user. Merge keeps the original author and date in the first line of each copied comment.</p>
+<p><strong>Merge is not in the ••• menu.</strong> Reload the page (Cmd/Ctrl + Shift + R). If it's still missing, ask your Jira admin to confirm the app is installed and licensed.</p>
+
+<h2>Support</h2>
+<p>See <a href="../sla.html">Support &amp; SLA</a> for hours and response times, or email <a href="mailto:hermohjlp@gmail.com">hermohjlp@gmail.com</a>.</p>
+</div></body>
+</html>

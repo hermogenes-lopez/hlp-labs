@@ -20,7 +20,7 @@
 <p>The apps read and write only the Jira data needed to do their job, using the permissions shown when you install them:</p>
 <ul>
   <li><strong>Checklists</strong> reads issues and stores each issue's checklist as a Jira issue property on that issue.</li>
-  <li><strong>Merge</strong> reads the two issues being merged (including comments, watchers, attachments and request details) and copies them from one issue to the other. It saves a merge history record in Forge app storage. The record contains the issue keys, the time, the step results, and the display name and Atlassian account ID of the user who ran the merge.</li>
+  <li><strong>Merge</strong> reads the two issues being merged (including comments, watchers, attachments and request details) and copies them from one issue to the other. It saves a merge history record in Forge app storage. The record contains only the issue keys, the time and the step results; it holds no names or account IDs.</li>
 </ul>
 
 <h2>Where data is stored</h2>
