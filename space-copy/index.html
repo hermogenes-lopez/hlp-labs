@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Big Space Copy for Confluence · Documentation · HLP Labs</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body><div class="wrap">
+<nav><a href="../">Home</a><a href="../privacy.html">Privacy</a><a href="../sla.html">Support &amp; SLA</a></nav>
+<h1>Big Space Copy for Confluence</h1>
+<p class="meta">Documentation · version 2.0 · October 2026</p>
+
+<p>Big Space Copy copies a whole Confluence space, including big ones, into a new space. A preflight report tells you what will be copied and skipped before anything is created, the copy runs in the background in batches, internal links are rewritten to point at the new space, and a verification report stays in the app afterwards.</p>
+
+<h2>Install</h2>
+<ol>
+  <li>A Confluence admin installs the app from the Atlassian Marketplace (Apps → Explore more apps → search "Big Space Copy").</li>
+  <li>There is no configuration. Free for sites with up to 10 users; paid per user above that.</li>
+  <li>The first time someone opens the app, Confluence asks them to allow it to act on their behalf. This is standard for Forge apps that read content as the user.</li>
+</ol>
+
+<h2>Copy a space</h2>
+<ol>
+  <li>Open the space you want to copy and choose <strong>Space apps → Copy this space</strong> in the sidebar. The space is pre-selected; you can pick another.</li>
+  <li>Click <strong>Run preflight</strong>. Nothing is created yet. The report shows the number of pages, blog posts, attachments (with total size), comments and labels, the pages the copy cannot read because of view restrictions, files over 50 MB, and a time estimate.</li>
+  <li>Enter a <strong>key</strong> and <strong>name</strong> for the new space (and an optional description).</li>
+  <li>Click <strong>Start copy</strong>. The copy runs in the background; you can close the tab and come back. The progress card counts pages, blog posts, attachments and comments as they land.</li>
+  <li>When it finishes, the card becomes the verification report, with a link to the new space. It stays under <strong>Recent copies</strong> until you delete it.</li>
+</ol>
+
+<h2>What is copied</h2>
+<ul>
+  <li><strong>Pages</strong> with their hierarchy and order, bodies, labels and page properties. The source homepage becomes the new space's homepage.</li>
+  <li><strong>Folders</strong> the pages lived in are recreated, and the pages are moved back into them. Whiteboards and databases are recreated empty.</li>
+  <li><strong>Blog posts</strong> with their original dates, labels and properties.</li>
+  <li><strong>Attachments</strong> up to 50 MB each, on the copied page or blog post.</li>
+  <li><strong>Comments</strong>: footer comments with their replies, and open inline comments as footer comments. Each starts with "Originally by @person on date".</li>
+  <li><strong>Links</strong>: page links, short links, page-id links, attachment links and space-key references in Include, Excerpt Include, Children, Page Tree and Content by Label macros are rewritten to the copies. Anything that could not be rewritten is listed per page.</li>
+</ul>
+
+<h2>Limits</h2>
+<ul>
+  <li>Page version history is not copied: Confluence has no API for it. Each copied page starts at version 1.</li>
+  <li>Whiteboards, databases and embeds are recreated empty: Confluence has no API for their contents.</li>
+  <li>Pages restricted so the app can't read them are skipped. The preflight lists them by title before you start.</li>
+  <li>Space-level files (the space logo) are not copied.</li>
+</ul>
+
+<h2>Space permissions</h2>
+<ul>
+  <li>On sites that use <strong>space roles</strong>, Confluence does not let apps assign roles. The new space gets your site's default permissions; set roles afterwards in <strong>Space settings → Permissions</strong>. The page and the report say so.</li>
+  <li>On sites without space roles you can choose: the source space's users and groups, the site defaults, or private (only you and the app). With the first and last, the person who starts the copy becomes an admin of the new space.</li>
+</ul>
+
+<h2>Cancel and rollback</h2>
+<p>While a copy runs, choose <strong>Cancel and delete the new space</strong> (rollback) or <strong>Cancel and keep what was copied</strong>. If an app update interrupts a copy, the card shows a Paused banner with <strong>Resume</strong>; the copy continues where it stopped, without duplicates.</p>
+
+<h2>Privacy and safety</h2>
+<ul>
+  <li>The page and the preflight run as you, with your Confluence permissions. The background copy runs as the app, which is why content restricted from the app is skipped and listed beforehand.</li>
+  <li>The app runs on Atlassian only: no data leaves your Atlassian cloud. It stores ids, counts, timestamps and content titles; no names, emails or account ids.</li>
+</ul>
+
+<h2>Frequently asked</h2>
+<p><strong>How long does a copy take?</strong> The preflight estimates it. As a reference, a 293-page space with links took about 9 minutes, and a 2,623-page space finished in one unattended run.</p>
+<p><strong>Copy this space is not in the sidebar.</strong> Reload the page (Cmd/Ctrl + Shift + R). If it's still missing, ask your Confluence admin to confirm the app is installed and licensed.</p>
+
+<h2>Support</h2>
+<p>See <a href="../sla.html">Support &amp; SLA</a> for hours and response times, or email <a href="mailto:hermogenes@hlp-labs.com">hermogenes@hlp-labs.com</a>.</p>
+</div></body>
+</html>
